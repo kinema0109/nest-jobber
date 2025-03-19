@@ -1,16 +1,20 @@
-import { Mutation, Query, Resolver } from '@nestjs/graphql';
+import { Args, Mutation, Query, Resolver } from '@nestjs/graphql';
 import { User } from './models/user.model';
 import { UsersService } from './users.service';
-
+import { CreateUserInput } from './dto/create-user.input';
+// import { Prisma } from '@prisma-clients/jobber-auth';
 @Resolver(() => User)
 export class UsersResolver {
-  constructor(private readonly UsersService: UsersService) {}
-  @Query(() => User)
-  async createUser() {
-    // return this.UsersService.user
+  constructor(private readonly usersService: UsersService) {}
+  @Mutation(() => User)
+  async createUser(@Args('createUserInput') createUserInput: CreateUserInput) {
+    return this.usersService.createUser(createUserInput);
   }
-  @Mutation(() => [User], { name: 'users' })
+  @Query(() => [User], { name: 'users' })
   async getUsers() {
-    // return this.UsersService.users();
+    return this.usersService.getUsers();
   }
+  // async getUser(@Args('UserWhereUniqueInput') id: Prisma.UserWhereUniqueInput) {
+  //   return this.usersService.getUser(id);
+  // }
 }
