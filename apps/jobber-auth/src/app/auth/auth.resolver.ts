@@ -6,9 +6,15 @@ import { AuthService } from './auth.service';
 
 @Resolver()
 export class AuthResolver {
-    constructor(private readonly authService:AuthService) {}
-    @Mutation(()=> User)
-    async login(@Args('loginInput') loginInput: LoginInput, @Context() context:GqlContext) {
-        return this.authService.login(loginInput, context.res);
+  constructor(private readonly authService: AuthService) {}
+  @Mutation(() => User)
+  async login(
+    @Args('loginInput') loginInput: LoginInput,
+    @Context() context: GqlContext
+  ) {
+    if (!context.res) {
+      throw new Error('Response object not found in context');
     }
+    return this.authService.login(loginInput, context.res);
+  }
 }

@@ -14,7 +14,12 @@ export class AuthService {
     private readonly configService: ConfigService,
     private readonly jwtService: JwtService
   ) {}
+
   async login({ email, password }: LoginInput, response: Response) {
+    if (!response) {
+      throw new Error('Response object is required');
+    }
+
     const user = await this.verifyUser(email, password);
     const expire = new Date();
     expire.setMilliseconds(
@@ -23,13 +28,17 @@ export class AuthService {
     );
     const TokenPayLoad: TokenPayLoad = { userId: user.id };
     const accessToken = this.jwtService.sign(TokenPayLoad);
+
     response.cookie('Authentication', accessToken, {
       httpOnly: true,
       secure: this.configService.get('NODE_ENV') === 'production',
       expires: expire,
+      sameSite: 'lax',
     });
-    // return { id: 1, email };
+
+    return user;
   }
+
   private async verifyUser(email: string, password: string) {
     try {
       const user = await this.userService.getUser({ email });
