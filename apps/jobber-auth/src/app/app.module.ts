@@ -21,7 +21,11 @@ import { GqlContext } from '@jobber/nestjs';
       autoSchemaFile: true,
       driver: ApolloDriver,
       csrfPrevention: false,
-      playground: true,
+      playground: {
+        settings: {
+          'request.credentials': 'include',
+        },
+      },
     }),
     UsersModule,
     AuthModule,
