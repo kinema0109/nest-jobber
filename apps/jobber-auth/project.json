@@ -6,10 +6,7 @@
   "targets": {
     "build": {
       "dependsOn": [
-        {
-          "target": "generate-types",
-          "projects": "jobber-auth"
-        }
+          "generate-prisma","generate-ts-proto"
       ]
     },
     "serve": {
@@ -30,19 +27,24 @@
       }
     },
     "test": {
-      "dependsOn": ["generate-types"]
+      "dependsOn": ["generate-prisma"]
     },
-    "generate-types": {
+    "generate-prisma": {
       "command": "prisma generate",
       "options": {
-        "cwd": "apps/jobber-auth"
-      }
+        "cwd": "apps/jobber-auth",
+        "input": ["prisma/schema.prisma"]
+      },
+      "cache":true
     },
     "migrate-prisma": {
       "command": "prisma migrate dev --name users",
       "options": {
         "cwd": "apps/jobber-auth"
       }
+    },
+    "generate-ts-proto": {
+      "command": "nx generate-ts-proto"
     }
   }
 }
