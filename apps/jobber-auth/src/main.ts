@@ -29,7 +29,7 @@ async function bootstrap() {
     transport: Transport.GRPC,
     options: {
       package: AUTH_PACKAGE_NAME,
-      protoPath: join(process.cwd(), 'dist/apps/jobber-auth/proto/auth.proto'),
+      protoPath: join(__dirname, 'proto/auth.proto'),
     },
   });
   await app.startAllMicroservices();
