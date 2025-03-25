@@ -8,6 +8,7 @@ import { FibonacciData } from './fibonacci.data.interface';
   description: 'This job calculates the fibonacci sequence of a given number.',
 })
 export class FibonacciJob extends AbstractJob<FibonacciData> {
+  protected messageClass: new () => FibonacciData;
   constructor(pulsarClient: PulsarClient) {
     super(pulsarClient);
   }

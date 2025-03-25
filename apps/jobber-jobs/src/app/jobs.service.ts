@@ -25,7 +25,7 @@ export class JobsService implements OnModuleInit {
   async getJobs() {
     return this.jobs.map((job) => job.meta);
   }
-  async executeJob(name: string, data: object) {
+  async executeJob<T>(name: string, data: FibonacciData | FibonacciData[]) {
     const job = this.jobs.find((job) => job.meta.name === name);
     if (!job) {
       throw new Error(`Job ${name} not found`);
@@ -35,10 +35,11 @@ export class JobsService implements OnModuleInit {
         'job is not an instance AbstractJob'
       );
     }
-    await(job.discoveredClass.instance as AbstractJob<FibonacciData>).excute(
-      data,
-      job.meta.name
-    );
+    await(
+      job.discoveredClass.instance as AbstractJob<
+        FibonacciData | FibonacciData[]
+      >
+    ).excute(data, job.meta.name);
     return job.meta;
   }
   async createJob() {

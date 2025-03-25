@@ -1,7 +1,7 @@
 /* eslint-disable @nx/enforce-module-boundaries */
 import { Injectable, OnModuleInit } from '@nestjs/common';
 import { PulsarClient, PulsarConsumer } from '@jobber/pulsar';
-import { FibonacciData } from './fibonacci-data.interface';
+import { FibonacciData } from './fibonacci-data.message';
 import { iterate } from 'fibonacci';
 
 @Injectable()
