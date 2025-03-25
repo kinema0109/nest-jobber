@@ -1,0 +1,36 @@
+{
+  "name": "jobber-auth-e2e",
+  "$schema": "../../node_modules/nx/schemas/project-schema.json",
+  "sourceRoot": "apps/jobber-auth-e2e/src",
+  "projectType": "application",
+  "targets": {
+    "e2e": {
+      "executor": "@nx/cypress:cypress",
+      "options": {
+        "cypressConfig": "apps/jobber-auth-e2e/cypress.config.ts",
+        "devServerTarget": "jobber-auth:serve:development"
+      },
+      "configurations": {
+        "production": {
+          "devServerTarget": "jobber-auth:serve:production"
+        }
+      }
+    },
+    "lint": {
+      "executor": "@nx/eslint:lint",
+      "outputs": ["{options.outputFile}"],
+      "options": {
+        "lintFilePatterns": ["apps/jobber-auth-e2e/**/*.{js,ts}"]
+      }
+    },
+    "test": {
+      "executor": "@nx/jest:jest",
+      "outputs": ["{workspaceRoot}/coverage/{projectRoot}"],
+      "options": {
+        "jestConfig": "apps/jobber-auth-e2e/jest.config.ts"
+      }
+    }
+  },
+  "tags": [],
+  "implicitDependencies": ["jobber-auth"]
+}

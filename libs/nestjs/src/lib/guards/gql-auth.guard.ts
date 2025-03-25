@@ -45,7 +45,6 @@ export class GqlAuthGuard implements CanActivate, OnModuleInit {
         .find((cookie: string) => cookie.trim().startsWith('Authentication='))
         ?.split('=')[1];
 
-    this.logger.debug(`Found token: ${token}`);
 
     if (!token) {
       this.logger.error('No authentication token found in request');
@@ -53,8 +52,8 @@ export class GqlAuthGuard implements CanActivate, OnModuleInit {
     }
 
     return this.authService.authenticate({ token }).pipe(
-      map((res) => {
-        this.logger.log('Authentication successful. User:', res);
+      map(() => {
+        this.logger.log('Authentication successful');
         return true;
       }),
       catchError((err) => {
@@ -70,10 +69,6 @@ export class GqlAuthGuard implements CanActivate, OnModuleInit {
     try {
       const ctx = GqlExecutionContext.create(context);
       const req = ctx.getContext().req;
-      this.logger.debug('Request context:', {
-        headers: req.headers,
-        cookies: req.cookies,
-      });
       return req;
     } catch (error) {
       this.logger.error('Failed to get request from context:', error);
