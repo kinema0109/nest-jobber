@@ -5,7 +5,7 @@ import { ApolloDriver, ApolloDriverConfig } from '@nestjs/apollo';
 import { UsersModule } from './users/users.module';
 import { ConfigModule } from '@nestjs/config';
 import { AuthModule } from './auth/auth.module';
-import { GqlContext } from '@jobber/nestjs';
+import { GqlContext } from '@jobber/graphql';
 
 @Module({
   imports: [

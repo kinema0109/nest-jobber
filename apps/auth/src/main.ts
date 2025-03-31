@@ -4,6 +4,7 @@ import { GrpcOptions, Transport } from '@nestjs/microservices';
 // eslint-disable-next-line @nx/enforce-module-boundaries
 import { AUTH_PACKAGE_NAME } from 'types/proto/auth'; // Ensure this path is correct and the file exists
 import { join } from 'path';
+// eslint-disable-next-line @nx/enforce-module-boundaries
 import { init } from '@jobber/nestjs';
 async function bootstrap() {
   const app = await NestFactory.create(AppModule);
