@@ -14,7 +14,7 @@
     ],
     "sharedGlobals": ["{workspaceRoot}/.github/workflows/ci.yml"]
   },
-  "nxCloudId": "67d790c623d83344c6326b7f",
+  "nxCloudId": "67ea199f7f9d766edae62e23",
   "plugins": [
     {
       "plugin": "@nx/webpack/plugin",
@@ -26,18 +26,8 @@
         "watchDepsTargetName": "watch-deps"
       }
     },
-    {
-      "plugin": "@nx/eslint/plugin",
-      "options": {
-        "targetName": "lint"
-      }
-    },
-    {
-      "plugin": "@nx/jest/plugin",
-      "options": {
-        "targetName": "test"
-      }
-    }
+    { "plugin": "@nx/eslint/plugin", "options": { "targetName": "lint" } },
+    { "plugin": "@nx/jest/plugin", "options": { "targetName": "test" } }
   ],
   "targetDefaults": {
     "build": {
@@ -47,13 +37,7 @@
         "{workspaceRoot}/proto/*"
       ],
       "options": {
-        "assets": [
-          {
-            "glob": "*.proto",
-            "input": "proto",
-            "output": "proto"
-          }
-        ]
+        "assets": [{ "glob": "*.proto", "input": "proto", "output": "proto" }]
       }
     }
   }
