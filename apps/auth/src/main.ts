@@ -2,7 +2,7 @@ import { NestFactory } from '@nestjs/core';
 import { AppModule } from './app/app.module';
 import { GrpcOptions, Transport } from '@nestjs/microservices';
 // eslint-disable-next-line @nx/enforce-module-boundaries
-import { AUTH_PACKAGE_NAME } from 'types/proto/auth'; // Ensure this path is correct and the file exists
+import { AUTH_PACKAGE_NAME } from 'libs/grpc/src/lib/types/proto/auth'; // Ensure this path is correct and the file exists
 import { join } from 'path';
 // eslint-disable-next-line @nx/enforce-module-boundaries
 import { init } from '@jobber/nestjs';

@@ -11,7 +11,10 @@ import {
 import { GqlExecutionContext } from '@nestjs/graphql';
 import { ClientGrpc } from '@nestjs/microservices';
 import { catchError, map, Observable, of, throwError } from 'rxjs';
-import { AUTH_PACKAGE_NAME, AuthServiceClient } from 'types/proto/auth';
+import {
+  AUTH_PACKAGE_NAME,
+  AuthServiceClient,
+} from 'libs/grpc/src/lib/types/proto/auth';
 
 @Injectable()
 export class GqlAuthGuard implements CanActivate, OnModuleInit {
@@ -44,7 +47,6 @@ export class GqlAuthGuard implements CanActivate, OnModuleInit {
         ?.split(';')
         .find((cookie: string) => cookie.trim().startsWith('Authentication='))
         ?.split('=')[1];
-
 
     if (!token) {
       this.logger.error('No authentication token found in request');

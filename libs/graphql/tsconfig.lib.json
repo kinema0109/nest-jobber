@@ -14,7 +14,7 @@
   },
   "include": [
     "src/**/*.ts",
-    "../../types/proto/auth.ts",
+    "../grpc/src/lib/types/proto/auth.ts",
     "../nestjs/src/lib/init.ts"
   ],
   "exclude": ["jest.config.ts", "src/**/*.spec.ts", "src/**/*.test.ts"]
