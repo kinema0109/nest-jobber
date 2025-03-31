@@ -1,6 +1,6 @@
 {
   "name": "nestjs",
-  "$schema": "../node_modules/nx/schemas/project-schema.json",
+  "$schema": "../../node_modules/nx/schemas/project-schema.json",
   "sourceRoot": "nestjs/src",
   "projectType": "library",
   "tags": [],

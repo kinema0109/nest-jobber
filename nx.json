@@ -35,10 +35,7 @@
         "{projectRoot}/**/*",
         "{workspaceRoot}/lib/**/*",
         "{workspaceRoot}/proto/*"
-      ],
-      "options": {
-        "assets": [{ "glob": "*.proto", "input": "proto", "output": "proto" }]
-      }
+      ]
     }
   }
 }

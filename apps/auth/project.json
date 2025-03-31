@@ -5,7 +5,7 @@
   "projectType": "application",
   "targets": {
     "build": {
-      "dependsOn": ["generate-prisma", "generate-ts-proto"]
+      "dependsOn": ["generate-prisma"]
     },
     "serve": {
       "executor": "@nx/js:node",
@@ -40,9 +40,6 @@
       "options": {
         "cwd": "apps/auth"
       }
-    },
-    "generate-ts-proto": {
-      "command": "nx generate-ts-proto"
     }
   }
 }
